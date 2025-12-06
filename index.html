@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>一键提取 Cookie</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",SimSun,sans-serif;background:#f5f5f5;text-align:center;padding:15% 0}
+    .box{background:#fff;border-radius:8px;margin:0 auto;max-width:400px;padding:30px 20px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    h2{color:#ff4757;margin-bottom:10px}
+    pre{background:#fafafa;border:1px solid #e5e5e5;padding:10px;border-radius:4px;word-break:break-all;text-align:left;font-size:12px}
+    button{background:#ff4757;color:#fff;border:none;border-radius:4px;padding:10px 20px;font-size:16px;margin-top:15px}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>一键提取 Cookie</h2>
+    <p>点击下方按钮即可复制当前登录 Cookie（含 PHPSID）</p>
+    <pre id="ck">正在读取...</pre>
+    <button id="copy">复制并发送给好友</button>
+  </div>
+  <script>
+    (function(){
+      const ck = document.cookie || '未获取到 Cookie';
+      document.getElementById('ck').textContent = ck;
+      document.getElementById('copy').onclick = function(){
+        const input = document.createElement('input');
+        input.value = ck;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        alert('已复制！\n请直接粘贴给好友（微信/QQ）即可。');
+      };
+    })();
+  </script>
+</body>
+</html>
